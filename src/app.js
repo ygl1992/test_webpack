@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './common/style/main.css';
+import style from './common/style/main.scss';
 
 ReactDOM.render(
-    <div>React aaaa</div>,
+    <div className="ot">
+        React
+        <span className="">Hello</span>
+    </div>,
     document.getElementById('app')
 )
