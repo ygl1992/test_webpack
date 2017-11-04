@@ -1,28 +1,28 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const cleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
 	entry: './src/app.js',
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, 'dist/assets'),
 		filename: 'bundle.js'
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			filename: 'index.html',
+			filename: '../index.html',
 			template: './src/index.html'
-		})
+		}),
+		new cleanWebpackPlugin(['dist'])
 	],
 	module: {
 		rules: [
 			{
 				test: /\.js$/,
 				use: [{
-					loader: 'babel-loader',
-					options: {
-						presets: ['react']
-					}
-				}]
+					loader: 'babel-loader'
+				}],
+				exclude: [path.resolve(__dirname, 'node_modules')]
 			},
 			{
 				test: /\.css$/,

@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import style from './common/style/main.scss';
+import 'font-awesome/css/font-awesome.css'
 
 ReactDOM.render(
     <div className="ot">
-        React
-        <span className="">Hello</span>
+        <img src={require('./common/img/banner001.png')} />
+        <span className="fa fa-rocket"></span>
     </div>,
     document.getElementById('app')
 )
