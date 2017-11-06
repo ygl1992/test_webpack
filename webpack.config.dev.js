@@ -5,12 +5,13 @@ const cleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
 	entry: './src/app.js',
 	output: {
-		path: path.resolve(__dirname, 'dist/assets'),
-		filename: 'bundle.js'
+		path: path.resolve(__dirname, 'dist/'),
+		filename: 'assets/js/bundle.js',
+		publicPath: '/'
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			filename: '../index.html',
+			filename: 'index.html',
 			template: './src/index.html'
 		}),
 		new cleanWebpackPlugin(['dist'])
@@ -73,17 +74,25 @@ module.exports = {
 				use: {
 					loader: 'url-loader',
 					options: {
-						limit: 10000
+						limit: 10000,
+						name: 'assets/img/[name][hash:8].[ext]'
 					}
 				}
 			},{
 				test: /\.(ttf|eot|woff|svg|woff2|oft)$/,
-				use: ['file-loader']
+				use: {
+					loader: 'file-loader',
+					options: {
+						name: 'assets/fonts/[name][hash:8].[ext]'
+					}
+				}
 			}
 		]
 	},
 	devServer: {
 		open: true,
-		port: 8081
+		port: 8081,
+		contentBase: './src/common',
+		publicPath: '/'
 	}
 }
